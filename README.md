@@ -5,8 +5,8 @@ Runn the appplication with  following command
 mvnw spring-boot:run
 
 Create a new show by
-POST http://localhost:8080/showDetails
-{"movieId": "2", "theatreId": "1","showDate": "2022-06-06","showTime": "15:00"}
+POST localhost:8080/showDetails
+{"movieId": "2", "showDate": "2022-06-06","showTime": "15:00", "theatreDetails":{"id":1}}
 
-Get show details for a theatre using
-GET localhost:8080/showDetails?theatreId=1&showDate=2022-06-05
+Get show details for city, date and movie use below
+GET localhost:8080/theatreDetails?showDate=2022-06-05&city=pune&movieId=1

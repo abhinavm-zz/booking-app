@@ -6,5 +6,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface ShowRepository extends JpaRepository<ShowDetails, Long> {
-	List <ShowDetails> findByTheatreIdAndShowDate (Long theatreId, String showDate);
 }

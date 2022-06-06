@@ -48,28 +48,13 @@ class ShowController {
   ShowDetails one(@PathVariable Long id) {
     
 	  
-	  
     return repository.findById(id)
       .orElseThrow(() -> new RuntimeException("Show Not Found"));
   }
   
+  
 
-  /**
-   * End point to provide teh show details based on Theatre ID and Show Date.
-   * The UI application will let user select the Theatre and date and pass the ID
-   * to fetch the required data.
-   * @param theatreId
-   * @param showDate
-   * @return
-   */
-  @GetMapping("/showDetails")
-  List<ShowDetails> getByTheatreAndDate(@RequestParam ("theatreId") Long theatreId,
-		  								@RequestParam ("showDate") String showDate ) {
-    
-	  
-	  
-    return repository.findByTheatreIdAndShowDate(theatreId, showDate);
-  }
+
 
 
   @PutMapping("/showDetails/{id}")

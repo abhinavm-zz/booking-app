@@ -1,31 +1,55 @@
 package com.xyz.bookingapp.entities;
 
+
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
 @Entity
-public class ShowDetails {
+public class ShowDetails  {
 
 	private @Id
 	@GeneratedValue
 	Long id;
 	private Long movieId;
-	private Long theatreId;
 	private String showDate;
 	private String showTime;
-
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "thatre_id", nullable = false)
+	@JsonBackReference
+    private TheatreDetails theatreDetails;
+	
+	
 	public ShowDetails() {
 	}
 
-	public ShowDetails(Long movieId,Long theatreId, String showDate, String showTime) {
+	public ShowDetails(Long movieId, String showDate, String showTime, TheatreDetails theatreDetails) {
 
 		this.movieId = movieId;
-		this.theatreId = theatreId;
 		this.showDate = showDate;
 		this.showTime = showTime;
+		this.theatreDetails = theatreDetails;
 	}
+	public TheatreDetails getTheatreDetails() {
+		return theatreDetails;
+	}
+
+	public void setTheatreDetails(TheatreDetails theatreDetails) {
+		this.theatreDetails = theatreDetails;
+	}
+
+	
 
 	public Long getId() {
 		return this.id;
@@ -57,13 +81,6 @@ public class ShowDetails {
 		this.showTime = showTime;
 	}
 
-	public Long getTheatreId() {
-		return theatreId;
-	}
-
-	public void setTheatreId(Long theatreId) {
-		this.theatreId = theatreId;
-	}
 
 	@Override
 	public int hashCode() {
@@ -75,8 +92,6 @@ public class ShowDetails {
 				+ ((showDate == null) ? 0 : showDate.hashCode());
 		result = prime * result
 				+ ((showTime == null) ? 0 : showTime.hashCode());
-		result = prime * result
-				+ ((theatreId == null) ? 0 : theatreId.hashCode());
 		return result;
 	}
 
@@ -109,18 +124,14 @@ public class ShowDetails {
 				return false;
 		} else if (!showTime.equals(other.showTime))
 			return false;
-		if (theatreId == null) {
-			if (other.theatreId != null)
-				return false;
-		} else if (!theatreId.equals(other.theatreId))
-			return false;
+
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "ShowDetails [id=" + id + ", movieId=" + movieId
-				+ ", theatreId=" + theatreId + ", showDate=" + showDate
+				+ ", showDate=" + showDate
 				+ ", showTime=" + showTime + "]";
 	}
 
