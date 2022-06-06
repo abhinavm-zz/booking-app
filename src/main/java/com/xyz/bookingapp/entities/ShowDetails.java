@@ -1,10 +1,9 @@
 package com.xyz.bookingapp.entities;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ShowDetails {
@@ -14,13 +13,13 @@ public class ShowDetails {
 	Long id;
 	private Long movieId;
 	private Long theatreId;
-	private Date showDate;
+	private String showDate;
 	private String showTime;
 
 	public ShowDetails() {
 	}
 
-	public ShowDetails(Long movieId, Long theatreId, Date showDate, String showTime) {
+	public ShowDetails(Long movieId,Long theatreId, String showDate, String showTime) {
 
 		this.movieId = movieId;
 		this.theatreId = theatreId;
@@ -40,19 +39,13 @@ public class ShowDetails {
 		this.movieId = movieId;
 	}
 
-	public Long getTheatreId() {
-		return theatreId;
-	}
+	
 
-	public void setTheatreId(Long theatreId) {
-		this.theatreId = theatreId;
-	}
-
-	public Date getShowDate() {
+	public String getShowDate() {
 		return showDate;
 	}
 
-	public void setShowDate(Date showDate) {
+	public void setShowDate(String showDate) {
 		this.showDate = showDate;
 	}
 
@@ -62,6 +55,14 @@ public class ShowDetails {
 
 	public void setShowTime(String showTime) {
 		this.showTime = showTime;
+	}
+
+	public Long getTheatreId() {
+		return theatreId;
+	}
+
+	public void setTheatreId(Long theatreId) {
+		this.theatreId = theatreId;
 	}
 
 	@Override
@@ -122,5 +123,7 @@ public class ShowDetails {
 				+ ", theatreId=" + theatreId + ", showDate=" + showDate
 				+ ", showTime=" + showTime + "]";
 	}
+
+	
 
 }

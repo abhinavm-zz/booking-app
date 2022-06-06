@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.xyz.bookingapp.entities.ScreenDetails;
+import com.xyz.bookingapp.entities.ScreenRepository;
 import com.xyz.bookingapp.entities.ShowRepository;
 import com.xyz.bookingapp.entities.ShowDetails;
 
@@ -23,9 +25,9 @@ class LoadDatabase {
   CommandLineRunner initDatabase(ShowRepository repository) {
 
     return args -> {
-      log.info("Preloading " + repository.save(new ShowDetails(new Long(1), new Long(1), new GregorianCalendar(2022, 5, 2).getTime(), "12:00")));
-      log.info("Preloading " + repository.save(new ShowDetails(new Long(1), new Long(1),  new GregorianCalendar(2022, 5, 1).getTime(), "15:00")));
-      log.info("Preloading " + repository.save(new ShowDetails(new Long(1), new Long(1),  new GregorianCalendar(2022, 5, 4).getTime(), "15:00")));
+      log.info("Preloading " + repository.save(new ShowDetails(new Long(1), new Long(1),"2022-06-04", "12:00")));
+      log.info("Preloading " + repository.save(new ShowDetails(new Long(1), new Long(1),"2022-06-04", "15:00")));
+      log.info("Preloading " + repository.save(new ShowDetails(new Long(1), new Long(1),"2022-06-05" , "15:00")));
     };
   }
 }
